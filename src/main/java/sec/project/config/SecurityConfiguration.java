@@ -23,6 +23,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // no real security at the moment
         http.authorizeRequests()
                 .anyRequest().permitAll();
+        http.cors().disable();
+        http.csrf().disable();
+
+        http.formLogin()
+                .defaultSuccessUrl("/list.html", true)
+                .failureUrl("/login.html?error=true");
+
+        http.headers().frameOptions().disable();
     }
 
     @Autowired

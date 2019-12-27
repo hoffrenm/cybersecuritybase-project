@@ -35,6 +35,6 @@ public class CustomUserDetailsService implements UserDetailsService {
                 true,
                 true,
                 true,
-                Arrays.asList(new SimpleGrantedAuthority("USER")));
+                Arrays.asList(new SimpleGrantedAuthority("ADMIN")));
     }
 }

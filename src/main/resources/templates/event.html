@@ -1,21 +1,39 @@
 <!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">    
     <head th:replace="fragments/layout :: head"></head>
     <body>
         <header th:replace="fragments/layout :: header"></header>
+        <nav th:replace="fragments/layout :: navigation" />
 
         <div class="container" style="margin-top:30px">
 
-            <h1>Sign up to the event using this form</h1>
+            <h1 th:text="${event.name}">Event name</h1>
+            <h4 th:text="${event.description}">Event description</h4>
+
+
+            <br />
+
+            <h3>Attending</h3>
+            <ul th:each="person : ${event.getAttendees()}">
+                <li th:utext="${person.getName()}">name</li>
+            </ul>
+
+
+            <h1 style="margin-top:60px">Sign up to the event using this form</h1>
 
             <form action="#" th:action="@{/form}" class="form-horizontal" method="POST">
                 <p><label for="name">Name</label>: <input class="form-control" type="text" name="name" id="name"/></p>
                 <p><label for="address">Address</label>: <input class="form-control" type="text" name="address" id="address"/></p>
-                <input type="hidden" id="id" th:value="${event.id}"/>
+                <input type="hidden" name="id" id="id" th:value="${event.getId()}"/>
                 <p><input type="submit" value="Submit" /></p>
             </form>
 
-            <p></p>
         </div>
+
     </body>
 </html>

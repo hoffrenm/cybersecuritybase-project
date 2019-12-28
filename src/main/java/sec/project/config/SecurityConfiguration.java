@@ -22,6 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // no real security at the moment
         http.authorizeRequests()
+                .antMatchers("/events/*/details").authenticated()
                 .anyRequest().permitAll();
         http.cors().disable();
         http.csrf().disable();
